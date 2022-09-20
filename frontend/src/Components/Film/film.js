@@ -20,6 +20,12 @@ const Film = (props) => {
                                     <td>{term.filmName}</td>
                                     <td>{term.numadded}</td>
                                     <td>{term.price.amount}</td>
+                                    <td scope={"col"} className={"text-right"}>
+                                        <a title={"Add to Wishlist"} className={"btn btn-danger"}
+                                           onClick={() => props.onadd(term.id)}>
+                                            Add to WishList
+                                        </a>
+                                    </td>
                                 </tr>
                             );
                         })}

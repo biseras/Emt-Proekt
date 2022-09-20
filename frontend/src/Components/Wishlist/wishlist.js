@@ -8,9 +8,7 @@ const Wishlist = (props) => {
                     <table className={"table table-striped"}>
                         <thead>
                         <tr>
-                            <th scope={"col"}>Name</th>
-                            <th scope={"col"}>Number Added</th>
-                            <th scope={"col"}>Price</th>
+                            <th scope={"col"}>Date Created</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -18,10 +16,6 @@ const Wishlist = (props) => {
                             return (
                                 <tr>
                                     <td>{term.addedOn}</td>
-                                    <td>{term.price.amount}</td>
-                                    <td>{term.map((term2)=>{
-                                        term2.
-                                    })}</td>
                                 </tr>
                             );
                         })}

@@ -102,7 +102,7 @@ public class WishListServiceImpl implements WishlistService {
 
     private Wishlist toDomainObject(WishlistForm wishlistForm) {
         var wishlist = new Wishlist(Instant.now(),wishlistForm.getCurrency());
-//        wishlistForm.getItems().forEach(item->wishlist.addItem(item.getFilm(),item.getKvalitet()));
+        wishlistForm.getItems().forEach(item->wishlist.addItem(item.getFilm(),item.getKvalitet()));
         return wishlist;
     }
 

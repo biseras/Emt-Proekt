@@ -29,7 +29,7 @@ class App extends Component{
           <Header/>
           <div className="container">
             <Routes>
-              <Route path={"/allfilms"} exact element={<Film film={this.state.film}/>}/>
+              <Route path={"/allfilms"} exact element={<Film film={this.state.film} onadd={this.addtowish}/>}/>
               <Route path={"/addfilm"} exact element={<AddFilm onAddFilm={this.addfilm}/>}/>
               <Route path={"/allwishlist"} exact element={<Wishlist wishlist={this.state.wishlist}/>}/>
             </Routes>
@@ -65,6 +65,15 @@ class App extends Component{
         wishlist:data.data
       })
     });
+  }
+  addtowish=(id)=>{
+    console.log(id)
+    WishlistService.additem(id).then(()=>
+    {
+
+      window.location.href="/allwishlists"
+    })
+
   }
 
 
