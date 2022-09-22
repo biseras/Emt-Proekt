@@ -4,6 +4,7 @@ import com.example.sharedkernel.domain.base.AbstractEntity;
 import com.example.sharedkernel.domain.financial.Currency;
 import com.example.sharedkernel.domain.financial.Money;
 import com.example.wishlist.domain.valueobjacts.Film;
+import com.example.wishlist.service.forms.WishlistItemForm;
 import lombok.Getter;
 import lombok.NonNull;
 
@@ -21,9 +22,10 @@ public class Wishlist extends AbstractEntity<WishlistId> {
     @Enumerated(EnumType.STRING)
     private Currency currency;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<FilmWishlist> filmWishlistSet= new HashSet<>();
+    private Set<FilmWishlist> filmWishlistSet=new HashSet<>();
     private Wishlist(){
         super(WishlistId.randomId(WishlistId.class));
+        //this.filmWishlistSet = new HashSet<>();
     }
     public Wishlist(Instant now, com.example.sharedkernel.domain.financial.Currency currency){
         super(WishlistId.randomId(WishlistId.class));
@@ -34,10 +36,10 @@ public class Wishlist extends AbstractEntity<WishlistId> {
     public Money total(){
         return filmWishlistSet.stream().map(FilmWishlist::subtotal).reduce(new Money(currency, 0),Money::add);
     }
-    public FilmWishlist addItem(@NonNull Film film, int kvalitet)
+    public FilmWishlist addItem(@NonNull Film film, int kvalitet, String name)
     {
         Objects.requireNonNull(film,"product must not be null");
-        var item  = new FilmWishlist(film.getFilmId(),film.getPrice(),kvalitet);
+        var item  = new FilmWishlist(film.getFilmId(),film.getPrice(),kvalitet, name);
         filmWishlistSet.add(item);
         return item;
     }

@@ -2,12 +2,11 @@ package com.example.wishlist.service.impl;
 
 import com.example.sharedkernel.domain.financial.Currency;
 import com.example.wishlist.domain.exceptions.WishlistException;
-import com.example.wishlist.domain.model.FilmWishlistId;
 import com.example.wishlist.domain.model.WishListAndFilmDTO;
 import com.example.wishlist.domain.model.Wishlist;
 import com.example.wishlist.domain.model.WishlistId;
 import com.example.wishlist.domain.repository.WishListRepository;
-import com.example.wishlist.domain.valueobjacts.FilmId;
+import com.example.wishlist.domain.valueobjacts.Film;
 import com.example.wishlist.service.WishlistService;
 import com.example.wishlist.service.forms.FilmIdDTO;
 import com.example.wishlist.service.forms.WishlistForm;
@@ -61,6 +60,7 @@ public class WishListServiceImpl implements WishlistService {
         wishlistForm.setItems(List.of(wishlistItemForm));
         wishlistForm.setCurrency(Currency.USD);
         WishlistId wishlistId=this.placeorder(wishlistForm);
+        findById(wishlistId).orElseThrow(WishlistException::new);
         return Optional.of("Successfully added");
     }
     @Override
@@ -102,7 +102,7 @@ public class WishListServiceImpl implements WishlistService {
 
     private Wishlist toDomainObject(WishlistForm wishlistForm) {
         var wishlist = new Wishlist(Instant.now(),wishlistForm.getCurrency());
-        wishlistForm.getItems().forEach(item->wishlist.addItem(item.getFilm(),item.getKvalitet()));
+        wishlistForm.getItems().forEach(item->wishlist.addItem(item.getFilm(),item.getKvalitet(), item.getFilm().getName()));
         return wishlist;
     }
 
