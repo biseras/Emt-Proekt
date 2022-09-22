@@ -71,7 +71,7 @@ class App extends Component{
     WishlistService.additem(id).then(()=>
     {
 
-      window.location.href="/allwishlists"
+      window.location.href="/allwishlist"
     })
 
   }

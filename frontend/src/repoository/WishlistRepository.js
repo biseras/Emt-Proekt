@@ -7,8 +7,9 @@ const WishlistService={
     additem:(id)=>{
         console.log(id)
         let text=id.toString()
+        console.log(id.id)
         return axiosw.post("/wihslist/additem", {
-            "filmId": text
+            "filmId": id.id
         })
     }
 

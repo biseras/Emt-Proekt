@@ -42,7 +42,7 @@ const AddFilm = (props) => {
                                        placeholder="Enter amount you want toa add"
                                        onChange={handleChange}
                                 />
-                                <label htmlFor="numadded">Number Added</label>
+                                <label htmlFor="numadded">Rate:</label>
                                 <input type="number"
                                        className="form-control"
                                        id="numadded"
